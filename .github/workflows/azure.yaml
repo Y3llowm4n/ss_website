@@ -15,4 +15,6 @@ jobs:
         password: ${{ secrets.PASSWORDTEST }}
         port: ${{ secrets.PORT }}
         script:
-          touch test.txt
+          cd /var/www/html
+          sudo -rm index.html
+          git clone 
