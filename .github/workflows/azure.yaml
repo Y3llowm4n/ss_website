@@ -17,4 +17,5 @@ jobs:
         script: |
           cd /var/www/html
           sudo -rm index.html
-          git clone https:${{ secrets.PATH }}@github.com/Y3llowm4n/ss_website.git
+          sudo rm -rf ./ss_website/
+          git clone https:${{secrets.PATH}}@github.com/Y3llowm4n/ss_website.git
