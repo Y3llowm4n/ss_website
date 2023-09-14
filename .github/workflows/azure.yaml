@@ -10,10 +10,10 @@ jobs:
     environment: Test
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
         
- deploy-prod:
-    runs-on: ubuntu-latest
-    environment: Production
-    needs: [deploy-test]
+deploy-prod:
+  runs-on: ubuntu-latest
+  environment: Production
+  needs: [deploy-test]
