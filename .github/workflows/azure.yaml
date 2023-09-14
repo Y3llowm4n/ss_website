@@ -18,3 +18,5 @@ jobs:
           cd /var/www/html
           sudo rm -rf *
           sudo git clone https://github.com/Y3llowm4n/ss_website
+          sudo mv /var/www/html/ss_website/* /var/www/html/
+          sudo rm -rf ./ss_website/
