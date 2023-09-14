@@ -4,7 +4,7 @@ on: [push]
 jobs:
 
   build:
-    name: Build
+    name: Test Application
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using password
@@ -20,3 +20,5 @@ jobs:
           sudo git clone https://github.com/Y3llowm4n/ss_website
           sudo mv /var/www/html/ss_website/* /var/www/html/
           sudo rm -rf ./ss_website/
+
+
