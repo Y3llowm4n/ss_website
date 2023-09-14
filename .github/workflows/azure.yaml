@@ -1,0 +1,15 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+    environment: Test
+
+ deploy-prod:
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: [deploy-test]
