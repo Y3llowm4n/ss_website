@@ -14,7 +14,7 @@ jobs:
         username: ${{ secrets.USERNAMETEST }}
         password: ${{ secrets.PASSWORDTEST }}
         port: ${{ secrets.PORT }}
-        script:
+        script: |
           cd /var/www/html
           sudo -rm index.html
           git clone https://github.com/Y3llowm4n/ss_website.git
