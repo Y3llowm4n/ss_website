@@ -18,4 +18,4 @@ jobs:
           cd /var/www/html
           sudo -rm index.html
           sudo rm -rf ./ss_website/
-          git clone https:${{secrets.PATH}}@github.com/Y3llowm4n/ss_website.git
+          sudo git clone https:${{secrets.PATH}}@github.com/Y3llowm4n/ss_website.git
