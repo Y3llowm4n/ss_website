@@ -17,3 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Production
     needs: [deploy-test]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
