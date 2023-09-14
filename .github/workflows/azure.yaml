@@ -1,23 +1,18 @@
 name: Deploy Website
 
-on:
-  push:
-    branches: [ main ]
-
+on: [push]
 jobs:
-  deploy-test:
-    runs-on: ubuntu-latest
-    environment: Test
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-        
-  deploy-prod:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    environment: Production
-    needs: [deploy-test]
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOSTTEST }}
+        username: ${{ secrets.USERNAMETEST }}
+        password: ${{ secrets.PASSWORDTEST }}
+        port: ${{ secrets.PORT }}
+        script:
+          touch test.txt
