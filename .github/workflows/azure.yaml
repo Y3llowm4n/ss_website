@@ -15,4 +15,4 @@ jobs:
         password: ${{ secrets.PASSWORDTEST }}
         port: ${{ secrets.PORT }}
         script: |
-          sudo git clone https:${{secrets.PATH}}@github.com/Y3llowm4n/ss_website.git
+          sudo git clone https://github.com/Y3llowm4n/ss_website
