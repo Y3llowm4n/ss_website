@@ -5,7 +5,7 @@ on: [push]
 jobs:
   Build:
     environment: Build
-    name: Build Application
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,7 @@ jobs:
             sudo rm -rf ./ss_website/
 
   Test:
-    name: Test Application
+    name: Test
     runs-on: ubuntu-latest
     environment: Test
     needs: [Build]
@@ -32,3 +32,24 @@ jobs:
     steps:
       - name: Check code
         uses: actions/checkout@v3
+
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: Deploy
+    needs: [Test]
+
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOSTFINAL }}
+          username: ${{ secrets.USERNAMEFINAL }}
+          password: ${{ secrets.PASSWORDFINAL }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/html
+            sudo rm -rf *
+            sudo git clone https://github.com/Y3llowm4n/ss_website
+            sudo mv /var/www/html/ss_website/* /var/www/html/
+            sudo rm -rf ./ss_website/ 
