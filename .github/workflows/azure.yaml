@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deploy
     needs: [Test]
-
+    
     steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
