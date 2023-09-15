@@ -2,23 +2,20 @@ name: Deploy Website
 
 on: [push]
 jobs:
-
   build:
     name: Test Application
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.HOSTTEST }}
-        username: ${{ secrets.USERNAMETEST }}
-        password: ${{ secrets.PASSWORDTEST }}
-        port: ${{ secrets.PORT }}
-        script: |
-          cd /var/www/html
-          sudo rm -rf *
-          sudo git clone https://github.com/Y3llowm4n/ss_website
-          sudo mv /var/www/html/ss_website/* /var/www/html/
-          sudo rm -rf ./ss_website/
-
-
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOSTTEST }}
+          username: ${{ secrets.USERNAMETEST }}
+          password: ${{ secrets.PASSWORDTEST }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/html
+            sudo rm -rf *
+            sudo git clone https://github.com/Y3llowm4n/ss_website
+            sudo mv /var/www/html/ss_website/* /var/www/html/
+            sudo rm -rf ./ss_website/
