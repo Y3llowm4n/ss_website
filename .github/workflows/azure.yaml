@@ -1,6 +1,7 @@
+permissions: read-all
 name: Deploy Website
-
 on: [push]
+
 jobs:
   build:
     name: Test Application
