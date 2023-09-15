@@ -17,6 +17,8 @@ jobs:
           password: ${{ secrets.PASSWORDTEST }}
           port: ${{ secrets.PORT }}
           script: |
+            sudo apt update
+            sudo apt install apache2
             cd /var/www/html
             sudo rm -rf *
             sudo git clone https://github.com/Y3llowm4n/ss_website
@@ -48,6 +50,8 @@ jobs:
           password: ${{ secrets.PASSWORDFINAL }}
           port: ${{ secrets.PORT }}
           script: |
+            sudo apt update
+            sudo apt install apache2
             cd /var/www/html
             sudo rm -rf *
             sudo git clone https://github.com/Y3llowm4n/ss_website
