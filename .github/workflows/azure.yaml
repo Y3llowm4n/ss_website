@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.0
+        uses: Y3llowm4n/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOSTTEST }}
           username: ${{ secrets.USERNAMETEST }}
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deploy
     needs: [Test]
-    
+
     steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
@@ -56,4 +56,4 @@ jobs:
             sudo rm -rf *
             sudo git clone https://github.com/Y3llowm4n/ss_website
             sudo mv /var/www/html/ss_website/* /var/www/html/
-            sudo rm -rf ./ss_website/ 
+            sudo rm -rf ./ss_website/
