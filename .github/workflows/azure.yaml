@@ -38,6 +38,7 @@ jobs:
   Approval:
     name: Approval
     runs-on: ubuntu-latest
+    environment: Approval
     needs: [Test]
 
     steps:
