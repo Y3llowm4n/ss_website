@@ -1,5 +1,5 @@
 permissions: read-all
-name: Build and Deploy Website
+name: Build Website
 on: [push]
 
 jobs:
@@ -17,8 +17,6 @@ jobs:
           password: ${{ secrets.PASSWORDTEST }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo apt update
-            sudo apt install apache2
             cd /var/www/html
             sudo rm -rf *
             sudo git clone https://github.com/Y3llowm4n/ss_website
@@ -35,34 +33,11 @@ jobs:
       - name: Check code
         uses: actions/checkout@v3
 
-  Approval:
-    name: Approval
-    runs-on: ubuntu-latest
-    environment: Approval
-    needs: [Test]
-
-    steps:
-      - name: Check Approval
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
-        run: |
-          if [[ "${{ github.event.pull_request.merged }}" == 'false' ]]; then
-            # Rollback the code on the test environment (similar to your rollback script)
-            sudo apt update
-            sudo apt install apache2 -y
-            cd /var/www/html
-            sudo rm -rf *
-            sudo git clone https://github.com/Y3llowm4n/ss_website
-            sudo mv /var/www/html/ss_website/* /var/www/html/
-            sudo rm -rf ./ss_website/
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
-
   Deploy:
     name: Deploy
     runs-on: ubuntu-latest
     environment: Deploy
-    needs: [Test, Approval]
+    needs: [Test]
 
     steps:
       - name: executing remote ssh commands using password
@@ -73,8 +48,6 @@ jobs:
           password: ${{ secrets.PASSWORDFINAL }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo apt update
-            sudo apt install apache2 -y
             cd /var/www/html
             sudo rm -rf *
             sudo git clone https://github.com/Y3llowm4n/ss_website
